@@ -1,0 +1,11 @@
+.image-grid-wrapper{
+    display:grid;
+    grid-template-columns: repeat (6, 1fr);
+    background-color: rgb(193, 221, 221);
+    border: #e40d0d 2px solid;
+}
+
+.pet-pic{
+    background-color: aquamarine;
+    border: #14e40d 2px solid;
+}
