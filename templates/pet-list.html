@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1 class="main-header">Pets</h1>
+{% endblock header %}
+{% block content %}
+    <div class="image-grid-wrapper">
+        {% for pet in pets %}
+            <div class="pet-pic"><a href="{{url_for('display_or_edit', pet_id=pet.id)}}"><img src="{{pet.photo_url}}" alt="photo of pet available for adoption"></a></div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+<!-- todo: css for main-header, image-grid and individual pics -->
