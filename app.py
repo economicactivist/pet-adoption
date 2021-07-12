@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, session, url
 from flask.helpers import url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, db_connect, Pet
+from forms import AddPetForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///pet_adoption'
@@ -26,11 +27,28 @@ def list_pets():
 
 @app.route('/add')
 def add_pet():
-    return render_template('add-pet-form.html')
+    form = AddPetForm()
+    return render_template('add-pet-form.html', form=form)
 
 @app.route('/add', methods=['POST'])
-def post_new_pet_to_db():
-    return redirect(url_for('list_pets'))
+def post_new_pet_to_db(form):
+    
+    if form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        photo_url = form.photo_url.data or None
+        age = form.age.data or None
+        notes = form.notes.data or None
+        available = form.available.data
+
+        new_pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes, available=available)
+
+        db.session.add(new_pet)
+        db.session.commit()
+        flash(f'Added {name} to adoption list!')
+        return redirect(url_for('list_pets'))
+    else:
+        return redirect(url_for('add_pet'))
 
 @app.route('/<int:pet_id>')
 def display_or_edit(pet_id):
