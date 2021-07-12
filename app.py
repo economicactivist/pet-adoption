@@ -31,15 +31,15 @@ def add_pet():
     return render_template('add-pet-form.html', form=form)
 
 @app.route('/add', methods=['POST'])
-def post_new_pet_to_db(form):
-
+def post_new_pet_to_db():
+    form = AddPetForm()
     if form.validate_on_submit():
         name = form.name.data
         species = form.species.data
         photo_url = form.photo_url.data or None
         age = form.age.data or None
         notes = form.notes.data or None
-        available = form.available.data
+        available = form.available.data or None
 
         new_pet = Pet(name=name, species=species, photo_url=photo_url, age=age, notes=notes, available=available)
 

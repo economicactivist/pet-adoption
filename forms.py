@@ -1,13 +1,16 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, IntegerField, TextAreaField
+from wtforms.fields.core import BooleanField
+from wtforms.validators import Optional
 
 
 class AddPetForm(FlaskForm):
     name = StringField("Pet name: ")
     species = StringField("Species name: ")
-    photo_url = StringField("Photo URL (optional): ")
-    age = IntegerField("Age (optional): ")
-    notes = TextAreaField("Notes (optional): ")
+    photo_url = StringField("Photo URL (optional): ", validators=[Optional()])
+    age = IntegerField("Age (optional): ", validators=[Optional()])
+    notes = TextAreaField("Notes (optional): ", validators=[Optional()])
+    available = BooleanField("Available", validators=[Optional()])
 
 
 
