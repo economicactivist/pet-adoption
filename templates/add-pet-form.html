@@ -3,7 +3,7 @@
     <h1 class="main-header">Add Pet</h1>
 {% endblock header %}
 {% block content %}
-   <form action="" method="post" action="{{url_for('post_new_pet_to_db', form=form)}}">
+   <form action="" method="POST">
     {{form.hidden_tag()}}
     {% for field in form if field.widget.input_type != 'hidden' %}
 
@@ -18,6 +18,7 @@
         </p>
         
     {% endfor %}
-    <button type="submit" class="green-submit">Add Pet</button>
+    
+    <a href="{{url_for('post_new_pet_to_db', form=form)}}"><button class="green-submit" formaction=>Add Pet</button></a>
    </form>
 {% endblock content %}

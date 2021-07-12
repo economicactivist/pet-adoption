@@ -32,7 +32,7 @@ def add_pet():
 
 @app.route('/add', methods=['POST'])
 def post_new_pet_to_db(form):
-    
+
     if form.validate_on_submit():
         name = form.name.data
         species = form.species.data
