@@ -1,6 +1,12 @@
+.main-header{
+    font-size: 18px;
+    color: gray;
+}
+
 .image-grid-wrapper{
     display:grid;
-    grid-template-columns: repeat (6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 6px;
     background-color: rgb(193, 221, 221);
     border: #e40d0d 2px solid;
 }
@@ -9,3 +15,13 @@
     background-color: aquamarine;
     border: #14e40d 2px solid;
 }
+
+.green-submit {
+    background-color: rgb(40,167,69);
+    color: white;
+ }
+
+ .flashes{
+    background-color: rgb(235, 176, 176);
+    color: red;
+ }

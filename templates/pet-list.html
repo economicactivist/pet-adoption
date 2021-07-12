@@ -3,9 +3,23 @@
     <h1 class="main-header">Pets</h1>
 {% endblock header %}
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="flashes">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <div class="image-grid-wrapper">
         {% for pet in pets %}
-            <div class="pet-pic"><a href="{{url_for('display_or_edit', pet_id=pet.id)}}"><img src="{{pet.photo_url}}" alt="photo of pet available for adoption"></a></div>
+            <div class="pet-pic">
+                <a href="{{url_for('display_or_edit', pet_id=pet.id)}}">
+                    <img src="{{pet.photo_url}}" alt="photo of pet available for adoption"></a>
+                {% if pet.available %}
+                    <p><em>Available</em></p>
+                {% endif %}
+                    <p></p>
+            </div>
         {% endfor %}
     </div>
 {% endblock content %}

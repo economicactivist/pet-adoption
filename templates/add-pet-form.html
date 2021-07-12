@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1 class="main-header">Add Pet</h1>
+{% endblock header %}
+{% block content %}
+   <form action="" method="post" action="{{url_for('post_new_pet_to_db', form=form)}}">
+    {{form.hidden_tag()}}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+
+        <p>
+            {{field.label}}
+            {{field}}
+
+            {% for error in field.errors %}
+                {{error}}
+                
+            {% endfor %}
+        </p>
+        
+    {% endfor %}
+    <button type="submit" class="green-submit">Add Pet</button>
+   </form>
+{% endblock content %}
